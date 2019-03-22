@@ -26,15 +26,16 @@ Write Email address of Receiver.
 “PAYPAL_TEST = True” means you want an Test API payment. You can write  "False" for Original payment API.
 
 3.  Run command:
-
     python manage.py migrate 
 
 4.  Now come to source code:
 
 In url.py:
 
+    from django.views.generic import TemplateView
+    
     url(r'^paypal/', include('paypal.standard.ipn.urls')),
-    url(r'^payment_process/$', api_views.payment_process, name='payment_process' ),
+    url(r'^payment_process/$', views.payment_process, name='payment_process' ),
 
     url(r'^payment_done/$', TemplateView.as_view(template_name= "pets/payment_done.html"), name='payment_done'),
 
